@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6dnlf10ykvxg"]
+
+[ext_resource type="Texture2D" uid="uid://bopte3i1op64v" path="res://Resouces/World/Meadow.png" id="1_vqjpr"]
+[ext_resource type="PackedScene" uid="uid://b4tayufrvgyge" path="res://Resouces/World/VillageBldg1.tscn" id="2_6q3b4"]
+[ext_resource type="PackedScene" uid="uid://bhvloqjmtnd2c" path="res://Resouces/World/VillageBldg2.tscn" id="3_l71ji"]
+[ext_resource type="PackedScene" uid="uid://ev568j680jfi" path="res://Resouces/World/VillageBldg3.tscn" id="4_5bf7s"]
+[ext_resource type="PackedScene" uid="uid://difd4bceokdqp" path="res://Resouces/Interactions/Limits.tscn" id="5_2ock7"]
+
+[node name="PlaySpace" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("1_vqjpr")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 480, 272)
+
+[node name="BldgRoot" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="VillageBldg1" parent="BldgRoot" instance=ExtResource("2_6q3b4")]
+position = Vector2(88, 8)
+
+[node name="VillageBldg2" parent="BldgRoot" instance=ExtResource("3_l71ji")]
+position = Vector2(464, 40)
+
+[node name="VillageBldg5" parent="BldgRoot" instance=ExtResource("3_l71ji")]
+position = Vector2(288, 32)
+
+[node name="VillageBldg3" parent="BldgRoot" instance=ExtResource("4_5bf7s")]
+position = Vector2(200, 32)
+
+[node name="VillageBldg6" parent="BldgRoot" instance=ExtResource("4_5bf7s")]
+position = Vector2(56, 312)
+
+[node name="VillageBldg4" parent="BldgRoot" instance=ExtResource("2_6q3b4")]
+position = Vector2(416, 304)
+
+[node name="Limits" parent="." instance=ExtResource("5_2ock7")]
+
+[node name="BottomRight" parent="Limits" index="1"]
+position = Vector2(480, 272)
+
+[node name="PlayerSpawn" type="Node2D" parent="."]
+position = Vector2(32, 104)
+
+[editable path="Limits"]
