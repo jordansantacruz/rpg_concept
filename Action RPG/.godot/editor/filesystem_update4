@@ -1,9 +1,0 @@
-res://Resouces/Enemies/WanderController.tscn
-res://Resouces/Interactions/BlinkShader.gdshader
-res://Resouces/Effects/EnemyDeathEffect.tscn
-res://Resouces/Effects/HitEffect.tscn
-res://Resouces/Music and Sounds/player_hurt_sound.tscn
-res://Resouces/Player/player.tscn
-res://camera_2d.tscn
-res://world.tscn
-res://camera_2d.gd
