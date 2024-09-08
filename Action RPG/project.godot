@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="ActionRpgTutorial"
-run/main_scene="res://Resouces/Managers/GameManager.tscn"
+run/main_scene="res://PlaySpaces/EmptyPlayspace.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 PlayerStats="*res://Resouces/Player/PlayerStats.tscn"
+GameManager="*res://Resouces/Managers/GameManager.tscn"
 
 [display]
 

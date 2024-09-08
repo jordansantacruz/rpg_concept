@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6dnlf10ykvxg"]
+[gd_scene load_steps=7 format=3 uid="uid://b6dnlf10ykvxg"]
 
 [ext_resource type="Texture2D" uid="uid://bopte3i1op64v" path="res://Resouces/World/Meadow.png" id="1_vqjpr"]
 [ext_resource type="PackedScene" uid="uid://b4tayufrvgyge" path="res://Resouces/World/VillageBldg1.tscn" id="2_6q3b4"]
 [ext_resource type="PackedScene" uid="uid://bhvloqjmtnd2c" path="res://Resouces/World/VillageBldg2.tscn" id="3_l71ji"]
 [ext_resource type="PackedScene" uid="uid://ev568j680jfi" path="res://Resouces/World/VillageBldg3.tscn" id="4_5bf7s"]
 [ext_resource type="PackedScene" uid="uid://difd4bceokdqp" path="res://Resouces/Interactions/Limits.tscn" id="5_2ock7"]
+[ext_resource type="PackedScene" uid="uid://e60jdbprbrgf" path="res://Resouces/Interactions/TransitionArea.tscn" id="6_brbwl"]
 
 [node name="PlaySpace" type="Node2D"]
 y_sort_enabled = true
@@ -43,7 +44,15 @@ position = Vector2(416, 304)
 [node name="BottomRight" parent="Limits" index="1"]
 position = Vector2(480, 272)
 
-[node name="PlayerSpawn" type="Node2D" parent="."]
-position = Vector2(32, 104)
+[node name="TransitionAreas" type="Node" parent="."]
+
+[node name="TransitionArea" parent="TransitionAreas" instance=ExtResource("6_brbwl")]
+position = Vector2(-8, 88)
+scale = Vector2(1, 3)
+TRANSITION_PLAYSPACE_PATH = "res://PlaySpaces/ForestNoPlayer.tscn"
+
+[node name="SpawnPoint" parent="TransitionAreas/TransitionArea" index="1"]
+position = Vector2(40, 0)
 
 [editable path="Limits"]
+[editable path="TransitionAreas/TransitionArea"]

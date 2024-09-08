@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwyxv5jvh705e"]
+[gd_scene load_steps=14 format=3 uid="uid://cwyxv5jvh705e"]
 
 [ext_resource type="Texture2D" uid="uid://dcld7u2pmn48w" path="res://Resouces/World/GrassBackground.png" id="1_p7eap"]
 [ext_resource type="Texture2D" uid="uid://qbaj5o7hsupn" path="res://Resouces/World/DirtTileset.png" id="2_geqe5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://n5mhklf42vt5" path="res://Resouces/World/Bush.tscn" id="7_4cntm"]
 [ext_resource type="PackedScene" uid="uid://difd4bceokdqp" path="res://Resouces/Interactions/Limits.tscn" id="8_6lpjw"]
 [ext_resource type="PackedScene" uid="uid://dpmh3e2e5pi50" path="res://Resouces/World/Grass.tscn" id="8_e62nf"]
+[ext_resource type="PackedScene" uid="uid://e60jdbprbrgf" path="res://Resouces/Interactions/TransitionArea.tscn" id="9_dnycr"]
 [ext_resource type="PackedScene" uid="uid://tune1uo51iiy" path="res://Resouces/Enemies/Bat.tscn" id="9_rxetw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v8xib"]
@@ -942,7 +943,18 @@ position = Vector2(112, 136)
 [node name="BottomRight" parent="Limits" index="1"]
 position = Vector2(568, 368)
 
+[node name="TransitionAreas" type="Node" parent="."]
+
+[node name="TransitionArea" parent="TransitionAreas" instance=ExtResource("9_dnycr")]
+position = Vector2(112, -11)
+scale = Vector2(1.8, 1)
+TRANSITION_PLAYSPACE_PATH = "res://PlaySpaces/Village.tscn"
+
+[node name="SpawnPoint" parent="TransitionAreas/TransitionArea" index="1"]
+position = Vector2(0, 30.7013)
+
 [node name="PlayerSpawn" type="Node2D" parent="."]
-position = Vector2(112, 32)
+position = Vector2(108.122, 41.38)
 
 [editable path="Limits"]
+[editable path="TransitionAreas/TransitionArea"]
