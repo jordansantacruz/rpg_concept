@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhvloqjmtnd2c"]
+
+[ext_resource type="Texture2D" uid="uid://4msaa7x4f4n6" path="res://Resouces/World/VillageBldg2.png" id="1_l212i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_das5v"]
+size = Vector2(78, 64)
+
+[node name="VillageBldg2" type="StaticBody2D"]
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -129.784)
+texture = ExtResource("1_l212i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19.6001)
+shape = SubResource("RectangleShape2D_das5v")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbbhh12p3l4qf"]
+
+[ext_resource type="Script" path="res://Resouces/Managers/GameManager.gd" id="1_0tl4w"]
+[ext_resource type="PackedScene" uid="uid://o6jyay3733yt" path="res://Resouces/Player/player.tscn" id="2_ojfpo"]
+[ext_resource type="PackedScene" uid="uid://j8mnqbbufwet" path="res://camera_2d.tscn" id="3_h0jut"]
+[ext_resource type="PackedScene" uid="uid://b7npo3kfnxhl4" path="res://Resouces/UI/HealthUI.tscn" id="4_lxeer"]
+
+[node name="GameManager" type="Node2D" node_paths=PackedStringArray("player", "camera", "canvas")]
+script = ExtResource("1_0tl4w")
+player = NodePath("Player")
+camera = NodePath("Camera2D")
+canvas = NodePath("CanvasLayer")
+
+[node name="Camera2D" parent="." instance=ExtResource("3_h0jut")]
+position = Vector2(136, 72)
+
+[node name="BottomRight" parent="Camera2D/Limits" index="1"]
+position = Vector2(0, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_ojfpo")]
+position = Vector2(136, 72)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("4_lxeer")]
+
+[editable path="Camera2D"]

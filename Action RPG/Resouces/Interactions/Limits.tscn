@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://difd4bceokdqp"]
+
+[node name="Limits" type="Node"]
+
+[node name="TopLeft" type="Node2D" parent="."]
+
+[node name="BottomRight" type="Node2D" parent="."]

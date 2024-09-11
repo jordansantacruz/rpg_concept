@@ -66,7 +66,7 @@ func move_state(delta):
 	if Input.is_action_just_pressed("roll"):
 		state = ROLL
 
-func attack_state(delta):
+func attack_state(_delta):
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
 	
@@ -85,8 +85,8 @@ func roll_animation_finished():
 func attack_animation_finished():
 	state = MOVE
 
-func _on_hurtbox_area_entered(area):
-	playerStats.health -= area.damage
+func _on_hurtbox_area_entered(_area):
+	#playerStats.health -= area.damage
 	hurtBox.start_invincibility(0.8)
 	hurtBox.create_hit_effect()
 	var playerHurtSound = PLAYER_HURT_SOUND.instantiate()
