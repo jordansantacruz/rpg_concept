@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Objects/PickUpObjects/AnimatedPickUpObject/AnimatedPickUpObject.gd" type="Script" id=1]
+[ext_resource path="res://Interactions/PlayerDetection.tscn" type="PackedScene" id=2]
+
+[node name="AnimatedPickUpObject" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="PickUpArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+
+[node name="PlayerDetection" parent="." instance=ExtResource( 2 )]

@@ -12,17 +12,20 @@ const PLAYER_HURT_SOUND = preload("res://Resouces/Music and Sounds/player_hurt_s
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var swordHitBox = $HitboxPivot/SwordHitbox
+@onready var interactHitBox = $InteractPivot/InteractHitbox
 @onready var hurtBox = $Hurtbox
 
 enum {
 	MOVE,
 	ROLL,
-	ATTACK
+	ATTACK,
+	INTERACT
 }
 
 var state = MOVE
 var roll_vector = Vector2.DOWN
 var playerStats = PlayerStats
+var interact_target = null
 
 func _ready():
 	playerStats.no_health.connect(queue_free)
@@ -38,7 +41,6 @@ func _physics_process(delta):
 			roll_state(delta)
 		ATTACK:
 			attack_state(delta)
-	
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -62,9 +64,12 @@ func move_state(delta):
 	
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK
-	
-	if Input.is_action_just_pressed("roll"):
+	elif Input.is_action_just_pressed("roll"):
 		state = ROLL
+	elif Input.is_action_just_pressed("interact"):
+		print("interacting")
+		if interact_target != null:
+			interact_target.interact()
 
 func attack_state(_delta):
 	velocity = Vector2.ZERO
@@ -74,7 +79,7 @@ func roll_state(delta):
 	velocity = roll_vector * MAX_SPEED * ROLL_SPEED * delta
 	animationState.travel("Roll")
 	move()
-	
+
 func move():
 	move_and_slide()
 
@@ -90,10 +95,16 @@ func _on_hurtbox_area_entered(_area):
 	hurtBox.start_invincibility(0.8)
 	hurtBox.create_hit_effect()
 	var playerHurtSound = PLAYER_HURT_SOUND.instantiate()
-	get_tree().current_scene.add_child(playerHurtSound)
+	GameManager.playspace_root.add_child(playerHurtSound)
 
 func _on_hurtbox_invincibility_started():
 	blinkAnimationPlayer.play("Start")
 
 func _on_hurtbox_invincibiliy_ended():
 	blinkAnimationPlayer.play("Stop")
+
+func _on_interact_hitbox_area_entered(area):
+	interact_target = area
+
+func _on_interact_hitbox_area_exited(area):
+	interact_target = null

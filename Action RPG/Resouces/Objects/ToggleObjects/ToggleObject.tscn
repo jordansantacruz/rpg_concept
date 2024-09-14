@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfm4mq783omml"]
+
+[ext_resource type="Script" path="res://Resouces/Objects/ToggleObjects/ToggleObject.gd" id="1_kub8d"]
+
+[node name="ToggleObject" type="Area2D"]
+collision_layer = 513
+collision_mask = 0
+script = ExtResource("1_kub8d")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+
+[node name="OnSprite" type="Sprite2D" parent="."]
+
+[node name="OffSprite" type="Sprite2D" parent="."]
+visible = false
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 1025
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

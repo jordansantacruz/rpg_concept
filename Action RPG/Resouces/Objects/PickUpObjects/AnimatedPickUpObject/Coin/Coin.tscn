@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Objects/PickUpObjects/AnimatedPickUpObject/AnimatedPickUpObject.gd" type="Script" id=1]
+[ext_resource path="res://World/objects.png" type="Texture" id=2]
+[ext_resource path="res://Interactions/PlayerDetection.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 6.91523
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 64, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 64, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 64, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 64, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "animate",
+"speed": 7.0
+} ]
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 34.6541
+
+[node name="Coin" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 1 )
+MAX_SPEED = 200
+FRICTION = 100
+
+[node name="PickUpArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
+position = Vector2( -0.445953, -0.594601 )
+shape = SubResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+animation = "animate"
+
+[node name="PlayerDetection" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" parent="PlayerDetection" index="0"]
+shape = SubResource( 7 )
+
+[connection signal="body_entered" from="PickUpArea" to="." method="_on_PickUpArea_body_entered"]
+
+[editable path="PlayerDetection"]

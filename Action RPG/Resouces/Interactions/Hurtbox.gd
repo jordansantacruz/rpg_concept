@@ -22,7 +22,7 @@ func start_invincibility(duration):
 
 func create_hit_effect():
 	var effect = HitEffect.instantiate()
-	var main = get_tree().current_scene
+	var main = GameManager.playspace_root
 	main.add_child(effect)
 	effect.global_position = global_position
 

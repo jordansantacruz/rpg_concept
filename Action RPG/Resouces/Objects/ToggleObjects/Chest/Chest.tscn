@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://du7iqmk7jayhc"]
+
+[ext_resource type="Script" path="res://Resouces/Objects/ToggleObjects/Chest/Chest.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bxvd1tihrlst4" path="res://Resouces/World/objects.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://dfm4mq783omml" path="res://Resouces/Objects/ToggleObjects/ToggleObject.tscn" id="3"]
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("2")
+region = Rect2(17, 0, 12, 14)
+
+[sub_resource type="RectangleShape2D" id="5"]
+size = Vector2(16, 16)
+
+[node name="Chest" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1")
+
+[node name="ToggleObject" parent="." instance=ExtResource("3")]
+loopable = true
+
+[node name="StaticBody2D" parent="ToggleObject" index="0"]
+collision_layer = 257
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="ToggleObject/StaticBody2D" index="0"]
+shape = SubResource("4")
+
+[node name="OnSprite" parent="ToggleObject" index="1"]
+texture = SubResource("1")
+
+[node name="OffSprite" parent="ToggleObject" index="2"]
+texture = SubResource("3")
+
+[node name="CollisionShape2D" parent="ToggleObject" index="4"]
+shape = SubResource("5")
+
+[connection signal="interacted" from="ToggleObject" to="." method="_on_ToggleObject_interacted"]
+
+[editable path="ToggleObject"]
