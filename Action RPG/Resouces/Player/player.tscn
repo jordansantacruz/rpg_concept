@@ -362,6 +362,36 @@ tracks/0/keys = {
 "values": [6]
 }
 
+[sub_resource type="Animation" id="Animation_mk4lp"]
+resource_name = "InteractUp"
+length = 0.2
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"interact_animation_finished"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InteractPivot/InteractHitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
 [sub_resource type="Animation" id="Animation_a5hlu"]
 length = 0.001
 
@@ -661,36 +691,6 @@ tracks/1/keys = {
 "values": [4.71239]
 }
 
-[sub_resource type="Animation" id="Animation_mk4lp"]
-resource_name = "InteractUp"
-length = 0.2
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"interact_animation_finished"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("InteractPivot/InteractHitbox/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wmtwi"]
 _data = {
 "AttackDown": SubResource("Animation_q43kp"),
@@ -898,7 +898,7 @@ material = SubResource("ShaderMaterial_8ahix")
 position = Vector2(0, -8)
 texture = ExtResource("2_2aqtq")
 hframes = 60
-frame = 55
+frame = 36
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -922,7 +922,7 @@ parameters/Run/blend_position = Vector2(0, 1)
 
 [node name="HitboxPivot" type="Node2D" parent="."]
 position = Vector2(0, -4)
-rotation = 4.71239
+rotation = 1.5708
 
 [node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource("3_gsjge")]
 position = Vector2(15, 0)

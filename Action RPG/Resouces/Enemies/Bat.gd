@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var hurtBox = $Hurtbox
 @onready var softCollisions = $SoftCollision
 @onready var wander_controller = $WanderController
+@onready var spawner = $Spawner
 
 const EnemyDeathEffect = preload("res://Resouces/Effects/EnemyDeathEffect.tscn")
 
@@ -87,6 +88,7 @@ func _on_stats_no_health():
 	var enemyDeathEffect = EnemyDeathEffect.instantiate()
 	get_parent().add_child(enemyDeathEffect)
 	enemyDeathEffect.global_position = global_position
+	spawner.spawn_objects()
 	queue_free()
 
 func _on_hurtbox_invincibility_started():

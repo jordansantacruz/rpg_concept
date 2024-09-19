@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://tune1uo51iiy"]
+[gd_scene load_steps=28 format=3 uid="uid://tune1uo51iiy"]
 
 [ext_resource type="Texture2D" uid="uid://ci1jvmccr47e2" path="res://Resouces/Enemies/Bat.png" id="1_nd5ij"]
 [ext_resource type="Script" path="res://Resouces/Enemies/Bat.gd" id="1_yhkqe"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://chwdvjdgqlq4b" path="res://Resouces/Interactions/Hitbox.tscn" id="7_j4j6s"]
 [ext_resource type="PackedScene" uid="uid://cmcybafqkjv3t" path="res://Resouces/Interactions/SoftCollision.tscn" id="8_410sr"]
 [ext_resource type="PackedScene" uid="uid://dsikpjpkixvr1" path="res://Resouces/Enemies/WanderController.tscn" id="9_04gfa"]
+[ext_resource type="PackedScene" uid="uid://61s7lrsfltgi" path="res://Resouces/Interactions/Spawner.tscn" id="11_4gk36"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5qi0r"]
 resource_local_to_scene = true
@@ -174,6 +175,12 @@ shape = SubResource("CircleShape2D_u2jks")
 libraries = {
 "": SubResource("AnimationLibrary_ncdup")
 }
+
+[node name="Spawner" parent="." instance=ExtResource("11_4gk36")]
+SPAWN_OBJECT_PATH = "res://Resouces/Objects/PickUpObjects/AnimatedPickUpObject/Coin/Coin.tscn"
+SPAWN_OBJECT_MIN = 2
+SPAWN_OBJECT_MAX = 3
+SCATTER_VELOCITY = 5000
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]

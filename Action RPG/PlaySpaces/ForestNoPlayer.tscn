@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwyxv5jvh705e"]
+[gd_scene load_steps=16 format=3 uid="uid://cwyxv5jvh705e"]
 
 [ext_resource type="Texture2D" uid="uid://dcld7u2pmn48w" path="res://Resouces/World/GrassBackground.png" id="1_p7eap"]
 [ext_resource type="Texture2D" uid="uid://qbaj5o7hsupn" path="res://Resouces/World/DirtTileset.png" id="2_geqe5"]
 [ext_resource type="Texture2D" uid="uid://bnu1cn6auvlk7" path="res://Resouces/World/CliffTileset.png" id="3_08nkm"]
 [ext_resource type="PackedScene" uid="uid://du7iqmk7jayhc" path="res://Resouces/Objects/ToggleObjects/Chest/Chest.tscn" id="4_e0i10"]
+[ext_resource type="PackedScene" uid="uid://cxhwgqpncgcaj" path="res://Resouces/Objects/PickUpObjects/AnimatedPickUpObject/Coin/Coin.tscn" id="5_f3juj"]
 [ext_resource type="PackedScene" uid="uid://6fkb50jfg2m2" path="res://Resouces/World/Tree.tscn" id="6_hbvdj"]
 [ext_resource type="PackedScene" uid="uid://n5mhklf42vt5" path="res://Resouces/World/Bush.tscn" id="7_4cntm"]
 [ext_resource type="PackedScene" uid="uid://difd4bceokdqp" path="res://Resouces/Interactions/Limits.tscn" id="8_6lpjw"]
@@ -861,6 +862,15 @@ layer_0/tile_data = PackedInt32Array(6, 1, 0, 65542, 1, 1, 131078, 1, 2, 131079,
 
 [node name="Chest" parent="InteractableObjects" instance=ExtResource("4_e0i10")]
 position = Vector2(72, 16)
+
+[node name="Coin" parent="InteractableObjects" instance=ExtResource("5_f3juj")]
+position = Vector2(80, 80)
+
+[node name="Coin2" parent="InteractableObjects" instance=ExtResource("5_f3juj")]
+position = Vector2(80, 96)
+
+[node name="Coin3" parent="InteractableObjects" instance=ExtResource("5_f3juj")]
+position = Vector2(80, 112)
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true

@@ -1,36 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://e60jdbprbrgf"]
 
-[sub_resource type="GDScript" id="GDScript_14x75"]
-script/source = "extends Area2D
-
-var transitioning = false;
-
-@export var TRANSITION_PLAYSPACE_PATH:String
-@export var SPAWN_POINT_ID: int
-
-@onready var spawnPoint = $SpawnPoint
-@onready var gameManager = GameManager
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func _on_body_entered(body):
-	if !transitioning:
-		transitioning = true
-		gameManager.transition_playspace(TRANSITION_PLAYSPACE_PATH, SPAWN_POINT_ID)
-"
+[ext_resource type="Script" path="res://Resouces/Interactions/TransitionArea.gd" id="1_7om6h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_286wd"]
 
 [node name="TransitionArea" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
-script = SubResource("GDScript_14x75")
+script = ExtResource("1_7om6h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_286wd")
