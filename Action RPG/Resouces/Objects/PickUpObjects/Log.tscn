@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dullifspuj764"]
+
+[ext_resource type="Script" path="res://Resouces/Objects/PickUpObjects/PickUpObject.gd" id="1_1d3xm"]
+[ext_resource type="PackedScene" uid="uid://b07230rawkeas" path="res://Resouces/Interactions/PlayerDetectionZone.tscn" id="2_ey6as"]
+[ext_resource type="Texture2D" uid="uid://tpbdbc413xaj" path="res://Resouces/World/objects2.png" id="2_ovlss"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_df7uc"]
+radius = 8.05651
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kdbpd"]
+radius = 18.5503
+
+[node name="Log" type="CharacterBody2D"]
+script = ExtResource("1_1d3xm")
+ACCELERATION = 800
+MAX_SPEED = 150
+FRICTION = 100
+
+[node name="PickUpArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
+shape = SubResource("CircleShape2D_df7uc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_ovlss")
+region_enabled = true
+region_rect = Rect2(784, 176, 16, 16)
+
+[node name="PlayerDetection" parent="." instance=ExtResource("2_ey6as")]
+
+[node name="CollisionShape2D" parent="PlayerDetection" index="0"]
+shape = SubResource("CircleShape2D_kdbpd")
+
+[connection signal="body_entered" from="PickUpArea" to="." method="_on_pick_up_area_body_entered"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+
+[editable path="PlayerDetection"]

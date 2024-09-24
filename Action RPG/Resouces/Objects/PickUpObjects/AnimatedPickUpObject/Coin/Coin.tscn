@@ -47,7 +47,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="7"]
-radius = 11.9766
+radius = 16.7245
 
 [node name="Coin" type="CharacterBody2D"]
 collision_layer = 0
@@ -76,6 +76,6 @@ frame_progress = 0.479643
 [node name="CollisionShape2D" parent="PlayerDetection" index="0"]
 shape = SubResource("7")
 
-[connection signal="body_entered" from="PickUpArea" to="." method="_on_PickUpArea_body_entered"]
+[connection signal="body_entered" from="PickUpArea" to="." method="_on_pick_up_area_body_entered"]
 
 [editable path="PlayerDetection"]

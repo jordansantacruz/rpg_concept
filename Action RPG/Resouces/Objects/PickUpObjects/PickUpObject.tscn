@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca1iy7k067edl"]
+
+[ext_resource type="Script" path="res://Resouces/Objects/PickUpObjects/PickUpObject.gd" id="1_4e68v"]
+[ext_resource type="PackedScene" uid="uid://b07230rawkeas" path="res://Resouces/Interactions/PlayerDetectionZone.tscn" id="2_o5owu"]
+
+[node name="PickUpObject" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_4e68v")
+
+[node name="PickUpArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="PlayerDetection" parent="." instance=ExtResource("2_o5owu")]
+
+[connection signal="body_entered" from="PickUpArea" to="." method="_on_pick_up_area_body_entered"]

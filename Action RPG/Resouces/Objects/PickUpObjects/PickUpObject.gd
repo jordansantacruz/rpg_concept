@@ -5,7 +5,6 @@ extends CharacterBody2D
 @export var FRICTION = 200
 @export var WANDER_TARGET_BREAK = 4
 
-@onready var animatedSprite = $AnimatedSprite
 @onready var playerDetection = $PlayerDetection
 
 enum {
@@ -20,7 +19,6 @@ var spawn_speed
 
 func _ready():
 	velocity = Vector2.ZERO
-	animatedSprite.play("animate")
 
 func _physics_process(delta):
 	match state:
@@ -53,5 +51,4 @@ func seek_player():
 		state = CHASE
 
 func _on_pick_up_area_body_entered(body):
-	print("picked up object")
 	queue_free()

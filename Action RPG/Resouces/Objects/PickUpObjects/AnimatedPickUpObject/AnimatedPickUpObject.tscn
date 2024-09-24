@@ -1,17 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bmf17i5wl8srg"]
 
-[ext_resource path="res://Objects/PickUpObjects/AnimatedPickUpObject/AnimatedPickUpObject.gd" type="Script" id=1]
-[ext_resource path="res://Interactions/PlayerDetection.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://Resouces/Objects/PickUpObjects/AnimatedPickUpObject/AnimatedPickUpObject.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://b07230rawkeas" path="res://Resouces/Interactions/PlayerDetectionZone.tscn" id="2"]
 
-[node name="AnimatedPickUpObject" type="KinematicBody2D"]
+[node name="AnimatedPickUpObject" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="PickUpArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 
-[node name="PlayerDetection" parent="." instance=ExtResource( 2 )]
+[node name="PlayerDetection" parent="." instance=ExtResource("2")]
+
+[connection signal="body_entered" from="PickUpArea" to="." method="_on_pick_up_area_body_entered"]

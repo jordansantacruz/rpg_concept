@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 const PLAYER_HURT_SOUND = preload("res://Resouces/Music and Sounds/player_hurt_sound.tscn")
+const SWORD_SPRITE_SHEET = preload("res://Resouces/Player/Sword_Swing.png")
+const AXE_SPRITE_SHEET = preload("res://Resouces/Player/Axe_Swing.png")
 
 @export var ACCELERATION: int = 500
 @export var MAX_SPEED: int = 80
@@ -14,6 +16,7 @@ const PLAYER_HURT_SOUND = preload("res://Resouces/Music and Sounds/player_hurt_s
 @onready var swordHitBox = $HitboxPivot/SwordHitbox
 @onready var interactHitBox = $InteractPivot/InteractHitbox
 @onready var hurtBox = $Hurtbox
+@onready var weaponSprite2D = $WeaponSprite2D
 
 enum {
 	MOVE,
@@ -66,12 +69,17 @@ func move_state(delta):
 		state = ATTACK
 	elif Input.is_action_just_pressed("roll"):
 		state = ROLL
+	elif Input.is_action_just_pressed("cycle_equip_up"):
+		cycle_equipment(-1)
+	elif Input.is_action_just_pressed("cycle_equip_down"):
+		cycle_equipment(1)
 	elif Input.is_action_just_pressed("interact"):
 		print("interacting")
 		if interact_target != null:
 			interact_target.interact()
 
 func attack_state(_delta):
+	weaponSprite2D.visible = true
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
 	
@@ -79,6 +87,12 @@ func roll_state(delta):
 	velocity = roll_vector * MAX_SPEED * ROLL_SPEED * delta
 	animationState.travel("Roll")
 	move()
+
+func cycle_equipment(direction):
+	if direction > 0:
+		weaponSprite2D.texture = SWORD_SPRITE_SHEET
+	elif direction < 0:
+		weaponSprite2D.texture = AXE_SPRITE_SHEET
 
 func move():
 	move_and_slide()
@@ -88,6 +102,7 @@ func roll_animation_finished():
 	state = MOVE
 
 func attack_animation_finished():
+	weaponSprite2D.visible = false
 	state = MOVE
 
 func _on_hurtbox_area_entered(_area):
